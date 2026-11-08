@@ -14,7 +14,8 @@ Center (Edge Add-ons). Keep both stores in sync.
 | Support / contact | https://github.com/bertpinoy/ClimbNamer/issues |
 | Privacy policy URL | https://github.com/bertpinoy/ClimbNamer/blob/main/PRIVACY.md |
 | Icon | `extension/icons/icon-128.png` (from the zip) |
-| Small promo tile (Chrome, optional) | `store/promo-tile-440x280.png` |
+| Small promo tile (Chrome, 440×280) | `store/promo-tile-440x280.png` |
+| Marquee promo tile (Chrome, 1400×560) | `store/marquee-1400x560.png` |
 | Screenshots | `store/screenshots/*.png` (1280×800), see below |
 
 ## Short description (manifest, max 132 characters)
