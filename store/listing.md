@@ -15,7 +15,7 @@ Center (Edge Add-ons). Keep both stores in sync.
 | Privacy policy URL | https://github.com/bertpinoy/ClimbNamer/blob/main/PRIVACY.md |
 | Icon | `extension/icons/icon-128.png` (from the zip) |
 | Small promo tile (Chrome, optional) | `store/promo-tile-440x280.png` |
-| Screenshots | 1280×800 or 640×400 PNG/JPEG, 1–5 pieces. **To do**: see below |
+| Screenshots | `store/screenshots/*.png` (1280×800), see below |
 
 ## Short description (manifest, max 132 characters)
 
@@ -91,14 +91,17 @@ ClimbNamer shows names for the climbs that the Hammerhead dashboard (dashboard.h
 The extension only runs on https://dashboard.hammerhead.io (a Hammerhead/SRAM account is needed to see routes and rides). To test without an account: the panel appears on any route or ride page that has climbs. Climb names are looked up from OpenStreetMap (Overpass API / Nominatim). No remote code; no data is sent to the developer.
 ```
 
-## Screenshots (to do)
+## Screenshots
 
-Make 1280×800 screenshots in a desktop browser window, for example:
+Upload in this order (1280×800 PNG, accepted by both stores):
 
-1. A route with the **Climb names** panel open (several named climbs).
-2. A climb opened from the panel: dashboard header "Climb 2 of 3 · Rodeberg".
-3. A ride's Ride Data with the panel.
-4. The settings page.
+1. `screenshots/1-route-climb-names.png`: a route with three named climbs
+   (Vidaigneberg, Rodeberg, Kemmelberg; summits from OpenStreetMap).
+2. `screenshots/2-route-single-climb.png`: a short route where the climb is named
+   after the road it follows (Sulferbergstraat).
 
-Tip: avoid showing your home address or start/finish location if you prefer not to
-publish it. Pick a route that starts somewhere public.
+Possible additions (max 5 on Chrome, 10 on Edge): a climb opened from the panel
+("Climb 2 of 3 · Rodeberg"), a ride's Ride Data with the panel, the settings page.
+
+Originals are scaled to 1280 px wide; a thin neutral band above and below fills the
+remaining height, so nothing is cropped.
