@@ -11,7 +11,7 @@ the *Kemmelberg*.
 > not endorsed or sponsored by Hammerhead or SRAM. Hammerhead and Karoo are trademarks of
 > their respective owners.
 
-![ClimbNamer on a route in the Hammerhead dashboard](store/screenshots/1-route-climb-names.png)
+![ClimbNamer on a route in the Hammerhead dashboard](store/screenshots/1-route-three-climbs.png)
 
 ## Features
 

@@ -96,13 +96,12 @@ The extension only runs on https://dashboard.hammerhead.io (a Hammerhead/SRAM ac
 
 Upload in this order (1280×800 PNG, accepted by both stores):
 
-1. `screenshots/1-route-climb-names.png`: a route with three named climbs
-   (Vidaigneberg, Rodeberg, Kemmelberg; summits from OpenStreetMap).
-2. `screenshots/2-route-single-climb.png`: a short route where the climb is named
-   after the road it follows (Sulferbergstraat).
+1. `screenshots/1-route-three-climbs.png`: a route with three climbs named after
+   their summits (Vidaigneberg, Rodeberg, Kemmelberg).
+2. `screenshots/2-long-route-many-climbs.png`: a long route around Chimay with 12
+   climbs named after the roads they follow.
+3. `screenshots/3-route-single-climb.png`: a short route with one climb
+   (Sulferbergstraat).
 
-Possible additions (max 5 on Chrome, 10 on Edge): a climb opened from the panel
-("Climb 2 of 3 · Rodeberg"), a ride's Ride Data with the panel, the settings page.
-
-Originals are scaled to 1280 px wide; a thin neutral band above and below fills the
+Originals are scaled to 1280 px wide; a thin dark band above and below fills the
 remaining height, so nothing is cropped.
