@@ -86,8 +86,7 @@ names, and the name cache.
 | `extension/background.js`, `naming.js` | OpenStreetMap lookups, cache, fair-use limits |
 | `extension/options.*` | Settings page |
 | `store/` | Store listing texts and images |
-| `tools/make-icons.py` | Draws the icons (`python tools/make-icons.py`, needs Pillow) |
-| `tools/make-promo.py` | Draws the store promo tiles (`python tools/make-promo.py`) |
+| `tools/make-graphics.py` | Draws the icons and store promo tiles (`python tools/make-graphics.py`, needs Pillow) |
 | `tools/package.ps1` | Builds the upload zip in `dist/` |
 
 ## Releasing
