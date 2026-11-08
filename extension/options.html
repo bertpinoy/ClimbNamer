@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ClimbNamer — settings</title>
+  <style>
+    body { font: 14px/1.45 system-ui, sans-serif; max-width: 720px; margin: 32px auto; padding: 0 16px; color: #1b1f23; background: #fff; }
+    header { display: flex; align-items: center; gap: 12px; }
+    header img { width: 48px; height: 48px; }
+    h1 { font-size: 20px; margin: 0; }
+    p.lead { color: #5f6b76; margin-top: 12px; }
+    h2 { font-size: 15px; margin-top: 28px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #eef0f2; }
+    th { font-weight: 600; color: #5f6b76; font-size: 12px; }
+    button { font: inherit; padding: 4px 10px; border-radius: 6px; border: 1px solid #c9d1d9; background: #f6f8fa; cursor: pointer; }
+    button:hover { background: #eef4fb; }
+    label.switch { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+    label.switch input { margin-top: 3px; }
+    .muted { color: #5f6b76; }
+    .ok { color: #2f855a; margin-left: 8px; }
+    footer { margin-top: 36px; padding-top: 12px; border-top: 1px solid #eef0f2; font-size: 12px; color: #5f6b76; }
+    a { color: #1a6fb8; }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="icons/icon-48.png" alt="">
+    <h1>ClimbNamer — for Hammerhead Dashboard</h1>
+  </header>
+  <p class="lead">Names come from OpenStreetMap: a named summit or pass near the top of the climb, otherwise the road the climb follows. Rename a climb with ✎ in the panel on the dashboard; your own names are listed below.</p>
+
+  <h2>Background lookups</h2>
+  <label class="switch">
+    <input type="checkbox" id="prefetch">
+    <span>Look up climb names for the newest routes and rides when a list loads, so names are ready when you open one.
+      <br><span class="muted">Turn this off to only look up the route or ride you open (fewer requests to the free OpenStreetMap services).</span></span>
+  </label>
+
+  <h2>Your climb names</h2>
+  <table>
+    <thead><tr><th>Name</th><th>Top of climb</th><th></th></tr></thead>
+    <tbody id="overrides"></tbody>
+  </table>
+  <p id="empty" class="muted" hidden>No custom names yet.</p>
+
+  <h2>Cache</h2>
+  <p class="muted">Looked-up names are stored in your browser so each climb is only looked up once. Clear the cache to look them up again, for example after OpenStreetMap was improved.</p>
+  <button id="clear">Clear name cache</button><span id="cleared" class="ok" hidden>Cleared</span>
+
+  <footer>
+    ClimbNamer is an independent project and is not affiliated with, endorsed by or sponsored by Hammerhead or SRAM.
+    Hammerhead and Karoo are trademarks of their respective owners.<br>
+    Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>, ODbL.
+    · <a href="https://github.com/bertpinoy/ClimbNamer/blob/main/PRIVACY.md" target="_blank" rel="noopener">Privacy policy</a>
+    · <a href="https://github.com/bertpinoy/ClimbNamer" target="_blank" rel="noopener">Source code</a>
+  </footer>
+  <script src="options.js"></script>
+</body>
+</html>
