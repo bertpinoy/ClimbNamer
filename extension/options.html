@@ -4,29 +4,36 @@
   <meta charset="utf-8">
   <title>ClimbNamer — settings</title>
   <style>
-    body { font: 14px/1.45 system-ui, sans-serif; max-width: 720px; margin: 32px auto; padding: 0 16px; color: #1b1f23; background: #fff; }
-    header { display: flex; align-items: center; gap: 12px; }
+    :root { --orange: #ff6b1a; --orange-deep: #e84a0c; --navy: #0c1220; --slate: #1e2940; --mist: #64748b; --line: #e2e8f0;
+            --display: "Bahnschrift", "DIN Alternate", "Barlow", "Segoe UI", system-ui, sans-serif; }
+    body { font: 14px/1.5 "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif; max-width: 720px; margin: 0 auto 40px; padding: 0 16px; color: #1b1f23; background: #fff; accent-color: var(--orange); }
+    header { display: flex; align-items: center; gap: 14px; margin: 0 -16px; padding: 22px 24px; background: linear-gradient(180deg, var(--slate), var(--navy)); border-radius: 0 0 16px 16px; }
     header img { width: 48px; height: 48px; }
-    h1 { font-size: 20px; margin: 0; }
-    p.lead { color: #5f6b76; margin-top: 12px; }
-    h2 { font-size: 15px; margin-top: 28px; }
+    h1 { font-family: var(--display); font-size: 26px; font-weight: 700; margin: 0; color: #fff; letter-spacing: 0.01em; }
+    h1 b { color: var(--orange); }
+    header .sub { font-family: var(--display); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; color: #94a3b8; }
+    p.lead { color: var(--mist); margin-top: 20px; }
+    h2 { font-family: var(--display); font-size: 16px; font-weight: 600; margin-top: 30px; letter-spacing: 0.01em; }
     table { width: 100%; border-collapse: collapse; }
-    th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #eef0f2; }
-    th { font-weight: 600; color: #5f6b76; font-size: 12px; }
-    button { font: inherit; padding: 4px 10px; border-radius: 6px; border: 1px solid #c9d1d9; background: #f6f8fa; cursor: pointer; }
-    button:hover { background: #eef4fb; }
+    th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); }
+    th { font-weight: 600; color: var(--mist); font-size: 12px; }
+    button { font: inherit; padding: 5px 12px; border-radius: 8px; border: 1px solid var(--orange); background: #fff; color: var(--orange-deep); font-weight: 600; cursor: pointer; }
+    button:hover { background: var(--orange); color: #fff; }
     label.switch { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
-    label.switch input { margin-top: 3px; }
-    .muted { color: #5f6b76; }
+    label.switch input { margin-top: 4px; width: 16px; height: 16px; }
+    .muted { color: var(--mist); }
     .ok { color: #2f855a; margin-left: 8px; }
-    footer { margin-top: 36px; padding-top: 12px; border-top: 1px solid #eef0f2; font-size: 12px; color: #5f6b76; }
-    a { color: #1a6fb8; }
+    footer { margin-top: 36px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 12px; color: var(--mist); }
+    a { color: var(--orange-deep); }
   </style>
 </head>
 <body>
   <header>
     <img src="icons/icon-48.png" alt="">
-    <h1>ClimbNamer — for Hammerhead Dashboard</h1>
+    <div>
+      <h1>Climb<b>Namer</b></h1>
+      <div class="sub">FOR HAMMERHEAD DASHBOARD</div>
+    </div>
   </header>
   <p class="lead">Names come from OpenStreetMap: a named summit or pass near the top of the climb, otherwise the road the climb follows. Rename a climb with ✎ in the panel on the dashboard; your own names are listed below.</p>
 

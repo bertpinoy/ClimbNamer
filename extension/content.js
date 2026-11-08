@@ -118,7 +118,14 @@
     return panel;
   }
 
-  const SOURCE_LABEL = { summit: 'OSM summit', road: 'OSM road', place: 'OSM place', custom: 'your name', none: '', pending: '', error: '' };
+  // Small tag next to the name: where the name comes from.
+  const SOURCE_LABEL = { summit: 'summit', road: 'road', place: 'place', custom: 'yours', none: '', pending: '', error: '' };
+  const SOURCE_TITLE = {
+    summit: 'Named summit or pass in OpenStreetMap',
+    road: 'Name of the road the climb follows (OpenStreetMap)',
+    place: 'Nearest village or town (OpenStreetMap)',
+    custom: 'Your own name for this climb',
+  };
 
   function render() {
     renderPanel();
@@ -138,9 +145,12 @@
       return `<li class="hhcn-row hhcn-${d.source}${c === activeClimb ? ' hhcn-active' : ''}" data-hhcn="open" data-i="${i}" title="Show this climb in the dashboard">
         <span class="hhcn-num">${i + 1}</span>
         <div class="hhcn-main">
-          <div class="hhcn-name" title="${esc(d.name)}">${esc(d.name)}</div>
+          <div class="hhcn-name-row">
+            <span class="hhcn-name" title="${esc(d.name)}">${esc(d.name)}</span>
+            ${SOURCE_LABEL[d.source] ? `<span class="hhcn-src" title="${SOURCE_TITLE[d.source]}">${SOURCE_LABEL[d.source]}</span>` : ''}
+          </div>
           ${d.detail ? `<div class="hhcn-detail" title="${esc(d.detail)}">${esc(d.detail)}</div>` : ''}
-          <div class="hhcn-stats">${km(c.length)} · ${c.grade.toFixed(1)}% · +${c.gain} m · at ${km(c.startDist)}${SOURCE_LABEL[d.source] ? ` · <span class="hhcn-src">${SOURCE_LABEL[d.source]}</span>` : ''}</div>
+          <div class="hhcn-stats">${km(c.length)} · ${c.grade.toFixed(1)}% · +${c.gain} m · at ${km(c.startDist)}</div>
         </div>
         <div class="hhcn-actions">
           <button data-hhcn="rename" data-i="${i}" title="Rename this climb">✎</button>
@@ -152,7 +162,9 @@
     el.className = collapsed ? 'hhcn-collapsed' : '';
     el.innerHTML = `
       <button class="hhcn-head" data-hhcn="toggle" title="${collapsed ? 'Show' : 'Hide'} climb names">
-        <span>⛰ Climb names (${current.climbs.length})</span><span class="hhcn-caret">${collapsed ? '▸' : '▾'}</span>
+        <span class="hhcn-head-title">Climb<b>Namer</b></span>
+        <span class="hhcn-count" title="${current.climbs.length} climbs">${current.climbs.length}</span>
+        <span class="hhcn-caret">${collapsed ? '▸' : '▾'}</span>
       </button>
       ${collapsed ? '' : `<ol class="hhcn-list">${rows}</ol>`}
       ${!collapsed && anyError ? '<button class="hhcn-retry" data-hhcn="retry">↻ Retry name lookup</button>' : ''}`;
