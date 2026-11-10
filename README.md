@@ -2,6 +2,10 @@
 
 # ClimbNamer — for Hammerhead Dashboard
 
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/kjaaciimnhgoclngjofflbpaheanemjo)](https://chromewebstore.google.com/detail/climbnamer-for-hammerhead/kjaaciimnhgoclngjofflbpaheanemjo)
+[![Users](https://img.shields.io/chrome-web-store/users/kjaaciimnhgoclngjofflbpaheanemjo)](https://chromewebstore.google.com/detail/climbnamer-for-hammerhead/kjaaciimnhgoclngjofflbpaheanemjo)
+[![License](https://img.shields.io/github/license/bertpinoy/ClimbNamer)](https://github.com/bertpinoy/ClimbNamer/blob/main/LICENSE)
+
 A Chrome / Edge extension that gives names to the climbs the
 [Hammerhead dashboard](https://dashboard.hammerhead.io) detects on your **routes** and
 **rides**. The dashboard shows climbs as "Climb 1 of 3"; ClimbNamer tells you that it is
@@ -129,5 +133,10 @@ URLs in `extension/inject.js` / `prewarm.js` and the `Climb N of M` /
 `data-testid="climbs"` selectors in `extension/content.js`.
 
 ---
+
+## License
+
+Copyright 2026 bertpinoy. The code is licensed under the [Apache License 2.0](LICENSE).
+Map data is not covered by this license; see below.
 
 Map data © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright), ODbL. See [DATA-LICENSE.md](DATA-LICENSE.md).
