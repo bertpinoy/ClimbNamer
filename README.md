@@ -3,6 +3,7 @@
 # ClimbNamer — for Hammerhead Dashboard
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/kjaaciimnhgoclngjofflbpaheanemjo)](https://chromewebstore.google.com/detail/climbnamer-for-hammerhead/kjaaciimnhgoclngjofflbpaheanemjo)
+[![Users](https://img.shields.io/chrome-web-store/users/kjaaciimnhgoclngjofflbpaheanemjo)](https://chromewebstore.google.com/detail/climbnamer-for-hammerhead/kjaaciimnhgoclngjofflbpaheanemjo)
 [![License](https://img.shields.io/github/license/bertpinoy/ClimbNamer)](https://github.com/bertpinoy/ClimbNamer/blob/main/LICENSE)
 
 A Chrome / Edge extension that gives names to the climbs the
