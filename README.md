@@ -7,6 +7,9 @@ A Chrome / Edge extension that gives names to the climbs the
 **rides**. The dashboard shows climbs as "Climb 1 of 3"; ClimbNamer tells you that it is
 the *Kemmelberg*.
 
+**[➜ Install ClimbNamer from the Chrome Web Store](https://chromewebstore.google.com/detail/climbnamer-for-hammerhead/kjaaciimnhgoclngjofflbpaheanemjo)**
+(works in Google Chrome and Microsoft Edge)
+
 > **Not affiliated with Hammerhead or SRAM.** ClimbNamer is an independent project. It is
 > not endorsed or sponsored by Hammerhead or SRAM. Hammerhead and Karoo are trademarks of
 > their respective owners.
@@ -61,9 +64,18 @@ the OpenStreetMap services to find names. See the [privacy policy](PRIVACY.md).
 
 ## Install
 
-**From the stores:** *coming soon* (Chrome Web Store, Microsoft Edge Add-ons).
+**Chrome:** install from the
+[Chrome Web Store](https://chromewebstore.google.com/detail/climbnamer-for-hammerhead/kjaaciimnhgoclngjofflbpaheanemjo)
+and click **Add to Chrome**. Updates are installed automatically.
 
-**From source:**
+**Edge:** open the same
+[Chrome Web Store page](https://chromewebstore.google.com/detail/climbnamer-for-hammerhead/kjaaciimnhgoclngjofflbpaheanemjo)
+in Edge, click **Allow extensions from other stores** when Edge asks, then
+**Get** / **Add to Chrome**.
+
+Then open or reload <https://dashboard.hammerhead.io>.
+
+**From source** (for development):
 
 1. Download or clone this repository.
 2. Open `chrome://extensions` (Chrome) or `edge://extensions` (Edge).
@@ -93,7 +105,7 @@ names, and the name cache.
 
 1. Raise `version` in `extension/manifest.json`.
 2. Run `powershell -File tools/package.ps1`. This creates `dist/ClimbNamer-<version>.zip`.
-3. Upload the zip in the Chrome Web Store Developer Dashboard and in Microsoft Partner
+3. Upload the zip in the Chrome Web Store Developer Dashboard (item `kjaaciimnhgoclngjofflbpaheanemjo`, **Package → Upload new package**) and, if listed there, in Microsoft Partner
    Center. The listing texts are in [`store/listing.md`](store/listing.md).
 
 If Hammerhead changes its dashboard, the parts most likely to need an update are the API

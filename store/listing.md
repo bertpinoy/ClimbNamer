@@ -7,6 +7,8 @@ Center (Edge Add-ons). Keep both stores in sync.
 
 | Field | Value |
 |---|---|
+| Chrome Web Store | **Published**: https://chromewebstore.google.com/detail/climbnamer-for-hammerhead/kjaaciimnhgoclngjofflbpaheanemjo (item ID `kjaaciimnhgoclngjofflbpaheanemjo`) |
+| Edge Add-ons | Not submitted yet |
 | Name | ClimbNamer - for Hammerhead Dashboard *(from the manifest)* |
 | Category | Chrome: *Productivity* (or *Tools*) · Edge: *Productivity* |
 | Language | English |
