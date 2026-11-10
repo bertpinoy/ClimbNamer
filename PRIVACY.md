@@ -1,6 +1,6 @@
 # ClimbNamer — Privacy Policy
 
-*Effective date: 8 November 2026*
+*Effective date: 10 November 2026*
 
 ClimbNamer ("the extension") is a browser extension for Google Chrome and Microsoft
 Edge that adds names to the climbs shown on dashboard.hammerhead.io. This policy
@@ -28,7 +28,11 @@ change anything in your Hammerhead account.
 
 To find a name for a climb, the extension sends **geographic coordinates of that
 climb** (points along the climb and the position of its top, plus a small area around
-it) to these public OpenStreetMap services:
+it) to these public OpenStreetMap services. In addition, the first time you look at
+a climb in a new area, the extension downloads the named summits and passes of that
+whole area (a rectangle of about 55 × 50 km); that request contains only the
+rectangle's coordinates. Climbs in Belgium, the Netherlands and Luxembourg can often
+be named from summit data included in the extension itself, without any request.
 
 | Service | Operated by | Used for |
 |---|---|---|
@@ -53,7 +57,8 @@ The developer of ClimbNamer receives **no data at all**.
 The extension stores, using your browser's extension storage:
 
 - **Name cache** (local to this browser): the names found for climbs, keyed by
-  rounded coordinates, and markers for which routes/rides were already looked up.
+  rounded coordinates, markers for which routes/rides were already looked up, and the
+  named summits and passes of areas you rode or planned in (at most 80 areas).
   This avoids repeating lookups. You can clear it under *Settings → Clear name cache*,
   or by removing the extension.
 - **Your settings and custom climb names** (browser *sync* storage): names you gave

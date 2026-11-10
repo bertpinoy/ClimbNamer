@@ -38,6 +38,18 @@ All names come from [OpenStreetMap](https://www.openstreetmap.org):
    climb's name itself (*Koppenberg*, *Paterberg*, *Oude Kwaremont*);
 3. otherwise *Climb near &lt;village&gt;*.
 
+**Instant summit names.** Summits and passes are known locally, so climbs named after
+one appear immediately, without waiting for a lookup:
+
+- for **Belgium, the Netherlands and Luxembourg** they are included in the extension
+  (about 1,150 named summits and passes);
+- **elsewhere**, the first time you open a route or ride in an area, the named summits
+  of that whole area (about 55 × 50 km) are downloaded once with a single request and
+  kept on your device. Every later climb in that area is named instantly.
+
+The "via &lt;road&gt;" detail of such climbs, and climbs named after a road, still come
+from a normal lookup.
+
 If a name is wrong or missing, fix it in OpenStreetMap (everyone benefits) or rename the
 climb with ✎.
 
@@ -47,6 +59,8 @@ ClimbNamer uses free public services run by volunteers and non-profits, and trie
 not to burden them:
 
 - **Each climb is looked up only once.** Results are cached in your browser.
+- **Summits per area, not per climb:** one request for all summits of a ~55 × 50 km area,
+  one area download at a time, refreshed after 180 days; Benelux needs none.
 - **One request at a time.** Overpass mirrors are tried one after another (the next one
   only if the previous is slow or fails), and Nominatim gets at most 1 request per
   second, as its [usage policy](https://operations.osmfoundation.org/policies/nominatim/)
@@ -96,8 +110,10 @@ names, and the name cache.
 | `extension/content.js`, `content.css` | Panel, names in the dashboard, rename, click-to-open |
 | `extension/prewarm.js` | Background lookups for the newest routes and rides |
 | `extension/background.js`, `naming.js` | OpenStreetMap lookups, cache, fair-use limits |
+| `extension/summits.js`, `extension/data/` | Instant summit names: bundled Benelux summits and downloaded areas |
 | `extension/options.*` | Settings page |
 | `store/` | Store listing texts and images |
+| `tools/make-summits.py` | Rebuilds the bundled Benelux summit data from OpenStreetMap (`python tools/make-summits.py`) |
 | `tools/make-graphics.py` | Draws the icons and store promo tiles (`python tools/make-graphics.py`, needs Pillow) |
 | `tools/package.ps1` | Builds the upload zip in `dist/` |
 
@@ -114,4 +130,4 @@ URLs in `extension/inject.js` / `prewarm.js` and the `Climb N of M` /
 
 ---
 
-Map data © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright), ODbL.
+Map data © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright), ODbL. See [DATA-LICENSE.md](DATA-LICENSE.md).

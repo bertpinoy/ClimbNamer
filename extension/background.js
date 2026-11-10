@@ -1,4 +1,4 @@
-importScripts('naming.js');
+importScripts('naming.js', 'summits.js');
 
 // Fair use: identify ClimbNamer to the OpenStreetMap services (their usage policies ask
 // apps to identify themselves). Applies only to requests made by this extension.
@@ -40,16 +40,36 @@ async function getNames(climbs, background) {
   const todo = [];
   const waits = [];
 
+  const unresolved = [];
   climbs.forEach((c, i) => {
     const k = keys[i];
-    if (cached[k]) results[i] = cached[k];
-    else if (inflight.has(k) && (background || !inflight.get(k).prio.low)) {
+    if (cached[k]) {
+      results[i] = cached[k];
+      if (cached[k].needsDetail) enrichLater(climbs[i], k, cached[k]);
+    } else if (inflight.has(k) && (background || !inflight.get(k).prio.low)) {
       waits.push(inflight.get(k).p.then((r) => (results[i] = r)));
     } else {
       // Not cached, or only queued in a slower background batch: look it up now.
-      todo.push(i);
+      unresolved.push(i);
     }
   });
+
+  // Instant answer for climbs whose top is a known summit or pass (bundled data or a
+  // downloaded area). The "via <road>" detail is filled in later, in the background.
+  await Promise.all(unresolved.map(async (i) => {
+    let local = null;
+    try {
+      local = await HHSummits.lookup(climbs[i].top);
+    } catch (e) {
+      console.warn('[ClimbNamer] local summit lookup failed', e);
+    }
+    if (!local) return todo.push(i);
+    const r = { name: local.name, detail: '', source: 'summit', needsDetail: true, at: Date.now() };
+    results[i] = r;
+    await chrome.storage.local.set({ [keys[i]]: r });
+    enrichLater(climbs[i], keys[i], r);
+  }));
+  todo.sort((a, b) => a - b);
 
   if (todo.length) {
     const prio = { low: !!background };
@@ -71,6 +91,35 @@ async function getNames(climbs, background) {
 
   await Promise.all(waits);
   return results;
+}
+
+// Background detail for locally named summits ("via Lettingstraat"): low priority,
+// Overpass only, a few climbs per request. Keeps the summit name found locally.
+const enrichQueue = new Map(); // cache key -> { climb, entry }
+let enrichTimer = null;
+
+function enrichLater(climb, key, entry) {
+  if (enrichQueue.has(key)) return;
+  enrichQueue.set(key, { climb, entry });
+  clearTimeout(enrichTimer);
+  enrichTimer = setTimeout(runEnrich, 2000); // collect climbs of the same page into one request
+}
+
+async function runEnrich() {
+  const batch = [...enrichQueue.entries()].slice(0, 12);
+  if (!batch.length) return;
+  try {
+    const found = await HHNaming.nameClimbs(batch.map(([, v]) => v.climb), { low: true });
+    await Promise.all(batch.map(async ([key, { entry }], j) => {
+      const r = found[j];
+      if (!r || r.error) return; // services busy: try again next time the climb is shown
+      const detail = r.source === 'summit' ? r.detail : r.source === 'road' ? 'via ' + r.name : '';
+      await chrome.storage.local.set({ [key]: { name: entry.name, detail, source: 'summit', at: Date.now() } });
+    }));
+  } finally {
+    batch.forEach(([key]) => enrichQueue.delete(key));
+    if (enrichQueue.size) enrichTimer = setTimeout(runEnrich, 2000);
+  }
 }
 
 chrome.action.onClicked.addListener(() => chrome.runtime.openOptionsPage());
