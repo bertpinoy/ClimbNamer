@@ -56,9 +56,17 @@
     };
   }
 
-  /** Response of POST /v1/routes/elevation */
+  /**
+   * Response of POST /v1/routes/elevation.
+   * A route without climbs comes back without a `climbs` field; that is reported as
+   * zero climbs (not ignored), so a previous route's climbs don't stay visible.
+   * @param {object} json
+   * @returns {{kind: string, totalDist: number, climbs: object[]}|null}
+   */
   function fromRouteElevation(json) {
-    if (!json || !Array.isArray(json.climbs)) return null;
+    if (!json || !json.resampledPolyline) return null;
+    /** @type {object[]} */
+    const rawClimbs = Array.isArray(json.climbs) ? json.climbs : [];
     const coords = json.resampledPolyline ? decodePolyline(json.resampledPolyline) : [];
     const eles = json.elevations || [];
     if (!coords.length) return null;
@@ -67,7 +75,7 @@
     }
     const dist = [0];
     for (let i = 1; i < coords.length; i++) dist.push(dist[i - 1] + hav(coords[i - 1], coords[i]));
-    const climbs = json.climbs
+    const climbs = rawClimbs
       .map((c) => {
         const s = Math.max(0, c.startIndex), e = Math.min(coords.length - 1, c.endIndex);
         const pts = [];

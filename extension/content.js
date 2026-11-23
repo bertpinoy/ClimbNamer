@@ -51,6 +51,29 @@
     chrome.storage.sync.set({ overrides: next });
   }
 
+  /**
+   * True for pages of a route or ride that isn't saved: they have no route/ride ID in
+   * the address, and every new route reuses the same one (/routes/new).
+   * @param {string} path
+   * @returns {boolean}
+   */
+  function isUnsavedPath(path) {
+    return !/\.(route|activity)\.[0-9a-f-]+/i.test(path || '');
+  }
+
+  /**
+   * Forget the climbs of unsaved routes when leaving or (re)opening them, so a new
+   * route never shows the climbs of a discarded one.
+   * @param {string} from
+   * @param {string} to
+   * @returns {void}
+   */
+  function forgetUnsaved(from, to) {
+    if (from && isUnsavedPath(from)) byPath.delete(from);
+    if (to && isUnsavedPath(to)) byPath.delete(to);
+    syncCurrent();
+  }
+
   // ---------- data in ----------
   window.addEventListener('message', (ev) => {
     if (ev.source !== window || !ev.data || !ev.data.__hhClimbNames) return;
@@ -58,8 +81,14 @@
       self.HHPrewarm?.onList(ev.data.payload.items || []);
       return;
     }
+    if (ev.data.type === 'navigate') {
+      forgetUnsaved(ev.data.payload.from, ev.data.payload.to);
+      return;
+    }
     if (ev.data.type !== 'climbs') return;
     const p = ev.data.payload;
+    // A late response for an unsaved route you already left: ignore it.
+    if (isUnsavedPath(p.path) && p.path !== location.pathname) return;
     const entry = { kind: p.kind, totalDist: p.totalDist, climbs: p.climbs };
     byPath.set(p.path, entry);
     syncCurrent();
